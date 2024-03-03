@@ -12,3 +12,9 @@ listItems.forEach(item => {
 })
 
 btn.addEventListener("click", () => nav.classList.toggle("show"))
+
+window.addEventListener("resize", (e) => {
+  if (e.target.innerWidth < 700 && nav.classList.contains("show")) {
+    nav.classList.remove("show")
+  }
+})
