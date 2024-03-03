@@ -47,6 +47,8 @@ nav {
   width: 80px;
   height: 100%;
   display: flex;
+  transition: 0.15s;
+  position: relative;
   padding: 1.5rem 1rem;
   flex-direction: column;
   justify-content: space-between;
@@ -99,6 +101,12 @@ nav.show {
       & i {
         color: var(--white);
       }
+    }
+  }
+
+  & .toggle-nav {
+    & i {
+      transform: rotate(185deg);
     }
   }
 }
@@ -221,4 +229,26 @@ nav.show {
 
 .logout-btn:hover i {
   color: var(--text-clr-h);
+}
+
+.toggle-nav {
+  top: 2rem;
+  left: 100%;
+  border: none;
+  outline: none;
+  display: none;
+  padding: 0.5rem;
+  position: absolute;
+  background-color: var(--white);
+  border-radius: 0 0.35rem 0.35rem 0;
+}
+
+.toggle-nav i {
+  font-size: 1.5rem;
+}
+
+@media screen and (min-width: 700px) {
+  .toggle-nav {
+    display: block;
+  }
 }

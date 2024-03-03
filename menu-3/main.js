@@ -1,4 +1,6 @@
 let listItems = document.querySelectorAll(".nav-links li")
+let btn = document.querySelector(".toggle-nav")
+let nav = document.querySelector("nav")
 
 listItems.forEach(item => {
   item.addEventListener("click", () => {
@@ -8,3 +10,5 @@ listItems.forEach(item => {
     item.classList.add("active")
   })
 })
+
+btn.addEventListener("click", () => nav.classList.toggle("show"))
