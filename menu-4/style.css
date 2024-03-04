@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope");
+
+:root {
+  --white: #fff;
+  --btn-clr: #0F766E;
+
+  /* ===== Light mode colors ===== */
+  --bg-light: #F3F4F6;
+  --clr-primary: #C3C7CD;
+  --clr-secondary: #1F2937;
+
+  /* ===== Dark mode colors ===== */
+  --bg-dark: #151D2C;
+  --text-dark: #8C9497;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+body {
+  position: relative;
+  font-family: "Manrope", serif;
+  background-color: var(--bg-light);
+}
+
+nav {
+  top: 0;
+  left: 0;
+  gap: 2rem;
+  bottom: 0;
+  width: 200px;
+  padding: 1rem;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  background-color: var(--white);
+  box-shadow: 0 0 6px -1.5px var(--clr-primary);
+}
+
+nav > header {
+  gap: 0.5rem;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+nav > header img {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 0.15rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--btn-clr);
+}
+
+nav > header h3 {
+  font-size: 0.85rem;
+  color: var(--clr-secondary);
+}
+
+nav > header h4 {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+}
+
+nav > header .toggle-nav {
+  top: 50%;
+  left: 100%;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  position: absolute;
+  border-radius: 50%;
+  color: var(--white);
+  transform: translateY(-50%);
+  background-color: var(--bg-dark);
+}
+
+nav > header .toggle-nav i {
+  font-size: 1.25rem;
+}
+
+.menu {
+  padding-bottom: 1rem;
+}
+
+.menu:not(:last-of-type) {
+  border-bottom: 2px solid var(--bg-light);
+}
+
+.nav-links {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-links .link {
+  gap: 0.85rem;
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  color: var(--text-dark);
+}
+
+.nav-links .link i {
+  width: 1.5rem;
+  font-size: 1.15rem;
+}
+
+.nav-links .link:is(:hover, :focus),
+.nav-links .link.active {
+  border-radius: 0.35rem;
+  color: var(--clr-secondary);
+  background-color: var(--bg-light);
+}
