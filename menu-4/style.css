@@ -57,6 +57,29 @@ body.darkmode {
         background-color: var(--clr-primary);
       }
     }
+
+    & .link .text,
+    & .dark-mode .text,
+    & .logout-btn .text {
+      color: var(--clr-secondary);
+      background-color: var(--clr-primary);
+
+      &::before {
+        background-color: var(--clr-primary);
+      }
+    }
+  }
+
+  & nav.show {
+    & .dark-mode .text,
+    & .logout-btn .text {
+      color: var(--text-dark);
+      background-color: transparent;
+    }
+
+    & .logout-btn .text {
+      color: var(--white);
+    }
   }
 
   & .menu {
@@ -77,14 +100,30 @@ body.darkmode {
 }
 
 nav {
-  gap: 2rem;
-  width: 200px;
+  gap: 3rem;
+  width: 100px;
   padding: 1rem;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  justify-content: space-between;
   background-color: var(--white);
   box-shadow: 0 0 6px -1.5px var(--clr-primary);
+}
+
+nav.show {
+  width: 200px;
+
+  > header {
+    & .toggle-nav i {
+      transform: rotateY(180deg);
+    }
+
+    & div {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 nav > header {
@@ -103,6 +142,11 @@ nav > header img {
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid var(--btn-clr);
+}
+
+nav > header div {
+  opacity: 0;
+  visibility: hidden;
 }
 
 nav > header h3 {
@@ -134,6 +178,27 @@ nav > header .toggle-nav i {
   font-size: 1.25rem;
 }
 
+nav.show {
+  & .menu {
+    & .link {
+      justify-content: start;
+
+      & .text {
+        padding: 0;
+        opacity: 1;
+        position: static;
+        visibility: visible;
+        color: var(--text-dark);
+        background-color: transparent;
+
+        &::before {
+          position: static;
+        }
+      }
+    }
+  }
+}
+
 .menu {
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--bg-light);
@@ -141,12 +206,49 @@ nav > header .toggle-nav i {
 
 .nav-links {
   gap: 0.5rem;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.nav-links .link,
-.dropdown-header .desc {
+.menu li,
+.dark-mode,
+.logout-btn {
+  position: relative;
+}
+
+.link {
+  justify-content: center;
+}
+
+.link .text,
+.logout-btn .text,
+.dark-mode .text {
+  opacity: 0;
+  padding: 0.5rem;
+  position: absolute;
+  visibility: hidden;
+  color: var(--white);
+  border-radius: 0.35rem;
+  left: calc(100% + 1rem);
+  background-color: var(--clr-secondary);
+}
+
+.link .text::before,
+.logout-btn .text::before,
+.dark-mode .text::before {
+  top: 50%;
+  width: 1rem;
+  content: "";
+  height: 1rem;
+  left: -0.95rem;
+  position: absolute;
+  transform: translateY(-50%);
+  background-color: var(--clr-secondary);
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+}
+
+.nav-links .link {
   gap: 0.85rem;
   display: flex;
   padding: 0.5rem;
@@ -154,11 +256,9 @@ nav > header .toggle-nav i {
   color: var(--text-dark);
 }
 
-.nav-links .link i,
-.dropdown-header .desc i,
-.dropdown-header .dropdown-toggle i {
+.nav-links .link i {
   width: 1.5rem;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
 }
 
 .nav-links .link:is(:hover, :focus),
@@ -168,33 +268,14 @@ nav > header .toggle-nav i {
   background-color: var(--bg-light);
 }
 
-.dropdown-menu {
-  gap: 0.5rem;
-  display: grid;
-}
-
-.dropdown-menu li {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-}
-
-.dropdown-menu .dropdown-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.dropdown-menu .dropdown-header .dropdown-toggle {
-  border: none;
-  outline: none;
-  color: var(--text-dark);
-  background-color: transparent;
-}
-
-.sub-menu {
-  height: 0;
-  margin-left: 2.5rem;
+.link:hover,
+.dark-mode:hover,
+.logout-btn:hover {
+  & .text {
+    opacity: 1;
+    display: initial;
+    visibility: visible;
+  }
 }
 
 .btns {
@@ -203,23 +284,69 @@ nav > header .toggle-nav i {
   flex-direction: column;
 }
 
+nav.show {
+  & .logout-btn,
+  & .dark-mode {
+    & .text {
+      padding: 0;
+      opacity: 1;
+      position: static;
+      visibility: visible;
+      color: var(--text-dark);
+      background-color: transparent;
+
+      &::before {
+          position: static;
+      }
+    }
+  }
+
+  & .logout-btn .text {
+    color: var(--white);
+  }
+}
+
+nav.show {
+  & .logout-btn {
+    color: var(--white);
+    padding: 0.85rem 1.5rem;
+    background-color: var(--btn-clr);
+    outline: 2px solid var(--btn-clr);
+
+    & .text {
+      display: initial;
+    }
+  }
+}
+
 .logout-btn {
   gap: 1rem;
   border: none;
   display: flex;
+  outline: none;
   font-size: inherit;
-  color: var(--white);
   align-items: center;
   border-radius: 100vw;
   outline-offset: 2.5px;
-  padding: 0.85rem 1.5rem;
+  color: var(--text-dark);
   justify-content: center;
-  background-color: var(--btn-clr);
-  outline: 2px solid var(--btn-clr);
+  background-color: transparent;
+}
+
+.logout-btn .text {
+  display: none;
 }
 
 .logout-btn i {
-  font-size: 1.15rem;
+  font-size: 1.35rem;
+}
+
+nav.show {
+  & .dark-mode {
+    & .text {
+      display: initial;
+    }
+  }
 }
 
 .dark-mode {
@@ -229,9 +356,14 @@ nav > header .toggle-nav i {
   justify-content: center;
 }
 
+.dark-mode .text {
+  display: none;
+}
+
 .dark-mode > div {
   width: 4rem;
   height: 2rem;
+  flex-shrink: 0;
   position: relative;
   border-radius: 100vw;
   background-color: var(--bg-light);
